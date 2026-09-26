@@ -182,13 +182,13 @@
           
           <p>
             Off-policy learning has one resounding advantage, however, which is the ability to leverage <b>privileged information</b> in constructing 
-            target rollouts for learning. On-policy learning instead relies on the model's own ability to generate signal, finding successful trajectories
-            essentially by chance. For truly novel tasks, this chance is effectively zero, yielding no learning signal. This further leaves learning
+            target rollouts for learning. On-policy learning instead relies on the model's own ability to find successful trajectories by chance. 
+            In fact, for truly novel tasks, this chance is effectively zero, yielding no learning signal at all. This further leaves learning
             prone to <b>distribution sharpening</b>, where preexisting capabilities are strengthened and refined instead of new capabilities being added.
           </p>
 
           <p>
-            This motivates the foundational question of our work:
+            In our work, we ask the following foundational question:
           </p>
 
           <p>
