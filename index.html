@@ -170,30 +170,33 @@
         <div class="content has-text-justified">
           <p>
             How do we introduce <b>fundamentally new capabilities</b> to a base model without <b>forgetting existing ones</b>?
-            Between SFT and RL, current consensus has a clear favorite. RL has overwhelmingly emerged as a 
-            
-            leading to substantial boosts in performance across domains such as mathematics and coding. At the same time,
-            there is evidence to suggest that the reasoning chains that emerge after RL-posttraining are well within base model
-            capabilities. For example, we can plot the log likelihoods and confidences (i.e., negative average per-token entropies)
-            of outputs <strong>with respect to the base model distribution</strong> and observe that RL outputs tightly concentrate around 
-            high likelihood and high confidence regions of the base model. This points towards an effective <strong>distribution sharpening</strong>,
-            where RL shifts probability mass from low-likelihood sequences to high-likelihood ones. 
           </p>
-          <div style="text-align:center; margin: 24px 0;">
-            <img src="combined_hists.png" alt="Combined Histograms" width="90%">
-          </div>
+
           <p>
-            Motivated by this observation, we introduce sampling from the <strong>power distribution</strong> \( p^{\alpha} \), 
-            which naturally sharpens the base model distribution \(p\) by upweighting high-likelihood sequences via exponentiation. 
-            Crucially, unlike simple low-temperature sampling, power distributions account for future completion 
-            likelihoods, favoring tokens with fewer but higher likelihood future paths. This is especially valuable for reasoning tasks, 
-            as it encourages avoiding "critical windows" or "pivotal tokens" that trap outputs in low-likelihood futures.
+            RL has emerged as a clear favorite for posttraining, featuring strong generalization while leaving prior
+            abilities relatively intact. SFT, on the other hand, is widely regarded as a weak learner, apparently memorizing and exhibiting
+            catastrophic forgetting. Several works attribute this discrepancy to the observation that RL learns <b>on-policy</b> while SFT learns <b>off-policy</b>. 
+            RL learns from rollouts generated from the learner's own distribution while SFT targets matching traces that can be exceedingly different from a
+            typical rollout, resulting in drastic and unpredictable shifts in behavior.
           </p>
+          
+          <p>
+            Off-policy learning has one resounding advantage, however, which is the ability to leverage <b>privileged information</b> in constructing 
+            target rollouts for learning. On-policy learning relies on the learner's own ability to generate signal, forcing a reliance on random chance 
+            for finding target trajectories. For truly novel tasks, this chance is effectively zero, yielding no learning signal. This leaves learning
+            prone to <b>distribution sharpening</b>, where preexisting capabilities are refined instead of new capabilities being added.
+          </p>
+
+          <p>
+            This motivates the following question: <b>How do we generate on-policy trajectories that remain faithful to privileged off-policy information?</b>
+          </p>
+
         </div>
 
         <h3 class="title is-4">Projection Sampling</h3>
         <div class="content has-text-justified">
           <p>
+            Privileged information designates an information constraint \( \mathcal{C} \)
             Directly sampling from \( p^{\alpha} \) is intractable, as it requires normalizing over a sequence space that 
             is exponential in length. To get around this, we employ a Metropolis-Hastings (MCMC) method to approximately 
             sample from the unnormalized distribution \( p^{\alpha} \). Metropolis-Hastings iteratively updates a sample
@@ -366,11 +369,9 @@
 
         <div class="content has-text-justified">
           <p>
-            Our work demonstrates that <strong>base models are significantly more capable at reasoning than 
-            standard sampling methods reveal</strong>. By simply sampling better, we can achieve massive boosts in 
-            single-shot reasoning while preserving the multi-sample diversity learned by the base model, all <strong>without training or access to a verifier</strong>. 
-            If we truly understand how to elicit the latent capabilities that already exist within our models, we have a clear notion of what constitutes <em>fundamentally novel behavior</em>
-            for LLMs, allowing us to build better posttraining techniques that push the bounds of frontier model capabilities.
+            The success of every single posttraining algorithm hinges on the following ability: <b>can we find a trajectory native to the learner's distribution
+            that accomplishes some specification?</b> Sampling is a way to <b>intentionally construct such trajectories</b> from privileged information,
+            establishing a <b>general-purpose primitive</b> for the posttraining stack, from SFT to RL to distillation. 
           </p>
         </div>
       </div>
