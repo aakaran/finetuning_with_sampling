@@ -211,9 +211,18 @@
                 \right) \implies p_{\mathcal{C}}(\mathbf{x}) \propto p(\mathbf{x}) \cdot \mathbf{1}\bigl(\mathbf{x} \in \mathcal{C}\bigr),\]
 
             which is the distribution closest to base model policy \(p\) that is also faithful to \( \mathcal{C} \). Of course, one way to sample
-            from /(p_{\mathcal{C}}/) is via <i>rejection sampling</i>, but this is no better than repeated sampling. Instead, we employ a Metropolis-Hastings
-            (MCMC) approach
-            
+            from \(p_{\mathcal{C}}\) is via <i>rejection sampling</i>, but this is no different from repeated sampling. Instead, we employ a neat trick based
+            on the Metropolis-Hastings (MCMC) algorithm that enables us to use privileged information as an "initialization" that progressively becomes more 
+            on-policy with more MCMC steps. 
+          </p>
+          <p>
+            Metropolis-Hastings is an approximate sampler that iteratively updates a sample rollout (\mathbf{x}\) by proposing an altered candidate 
+            (\mathbf{x'}\) via a proposal distribution \(\kappa\), accepting updates with probability \(A(\mathbf{x}, \mathbf{x'})\) that depends on 
+            \(p_{\mathcal{C}}\) via
+
+            \[A(\mathbf{x}, \mathbf{x'}) = \text{min} \left\lbrace 1, \frac{p_{\mathcal{C}}(\mathbf{x}) \cdot \kappa(\mathbf{x'} | \mathbf{x})}{p_{\mathcal{C}}(\mathbf{x'}) \cdot \kappa(\mathbf{x}|\mathbf{x'})}\right\rbrace =  \text{min} \left\lbrace 1, \frac{p(\mathbf{x}) \cdot 
+    \mathbf{1}\bigl(\mathbf{x} \in \mathcal{C}\bigr) \cdot \kappa(\mathbf{x'} | \mathbf{x})}{p(\mathbf{x'}) \cdot 
+    \mathbf{1}\bigl(\mathbf{x'} \in \mathcal{C}\bigr) \cdot \kappa(\mathbf{x}|\mathbf{x'})}\right\rbrace = \text{min} \left\lbrace 1, \frac{p(\mathbf{x}) \cdot \kappa_{\mathcal{C}}(\mathbf{x'} | \mathbf{x})}{p(\mathbf{x'}) \cdot \kappa_{\mathcal{C}}(\mathbf{x}|\mathbf{x'})}\right\rbrace.\]
           </p>
           <!-- Embed block START -->
           <figure style="margin: 24px 0; text-align: center;">
