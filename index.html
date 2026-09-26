@@ -182,13 +182,17 @@
           
           <p>
             Off-policy learning has one resounding advantage, however, which is the ability to leverage <b>privileged information</b> in constructing 
-            target rollouts for learning. On-policy learning relies on the learner's own ability to generate signal, forcing a reliance on random chance 
-            for finding target trajectories. For truly novel tasks, this chance is effectively zero, yielding no learning signal. This further leaves learning
-            prone to <b>distribution sharpening</b>, where preexisting capabilities are refined instead of new capabilities being added.
+            target rollouts for learning. On-policy learning instead relies on the model's own ability to generate signal, finding successful trajectories
+            essentially by chance. For truly novel tasks, this chance is effectively zero, yielding no learning signal. This further leaves learning
+            prone to <b>distribution sharpening</b>, where preexisting capabilities are strengthened and refined instead of new capabilities being added.
           </p>
 
           <p>
-            This motivates our driving question: <b>Can we generate on-policy trajectories that remain faithful to privileged off-policy information?</b>
+            This motivates the foundational question of our work:
+          </p>
+
+          <p>
+            <b>Can we algorithmically sample on-policy trajectories that remain faithful to privileged off-policy information?</b>
           </p>
 
         </div>
