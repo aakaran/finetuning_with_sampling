@@ -182,8 +182,8 @@
           
           <p>
             Off-policy learning has one resounding advantage, however, which is the ability to leverage <b>privileged information</b> in constructing 
-            target rollouts for learning. On-policy learning instead relies on the model's own ability to find successful trajectories by chance. 
-            In fact, for truly novel tasks, this chance is effectively zero, yielding no learning signal at all. This further leaves learning
+            target rollouts for learning. On-policy learning instead relies on the model's own ability to find successful trajectories by repeated sampling. 
+            For truly novel tasks, though, the likelihood of this happening is effectively zero, yielding no learning signal at all. This further leaves learning
             prone to <b>distribution sharpening</b>, where preexisting capabilities are strengthened and refined instead of new capabilities being added. 
             This motivates the foundational question of our work:
           </p>
@@ -199,7 +199,7 @@
           <p>
             Privileged information can be formalized as an information constraint \( \mathcal{C} \) over all trajectories, where some predetermined equivalence relation
             determines whether a trajectory is <i>faithful</i> to \( \mathcal{C} \) or not. Consider the set of all distributions \( \mathcal{P}_\mathcal{C} \) 
-            that have support \( \mathcal{C} \). Then we want to sample from
+            that have support \( \mathcal{C} \). Then we want to sample from the <b>information projection</b>
 
             \[p_{\mathcal{C}}
                 :=
@@ -208,16 +208,12 @@
                     \pi
                     \,\middle\|\,
                     p
-                \right) \implies p_{\mathcal{C}}(\mathbf{x}) \propto p(\mathbf{x}) \cdot \mathbf{1}\bigl(\mathbf{x} \in \mathcal{C}\bigr)\]
-            
+                \right) \implies p_{\mathcal{C}}(\mathbf{x}) \propto p(\mathbf{x}) \cdot \mathbf{1}\bigl(\mathbf{x} \in \mathcal{C}\bigr),\]
 
+            which is the distribution closest to base model policy \(p\) that is also faithful to \( \mathcal{C} \). Of course, one way to sample
+            from /(p_{\mathcal{C}}/) is via <i>rejection sampling</i>, but this is no better than repeated sampling. Instead, we employ a Metropolis-Hastings
+            (MCMC) approach
             
-            
-            Directly sampling from \( p^{\alpha} \) is intractable, as it requires normalizing over a sequence space that 
-            is exponential in length. To get around this, we employ a Metropolis-Hastings (MCMC) method to approximately 
-            sample from the unnormalized distribution \( p^{\alpha} \). Metropolis-Hastings iteratively updates a sample
-            generation \(\mathbf{x}\) by proposing a new candidate \(\mathbf{x'}\) and accepting the change with some probability
-            \(A(\mathbf{x}, \mathbf{x'})\) which depends on the \( p^{\alpha} \) weights. We illustrate the process below:
           </p>
           <!-- Embed block START -->
           <figure style="margin: 24px 0; text-align: center;">
