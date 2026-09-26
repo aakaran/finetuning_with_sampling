@@ -174,21 +174,21 @@
 
           <p>
             RL has emerged as a clear favorite for posttraining, featuring strong generalization while leaving prior
-            abilities relatively intact. SFT, on the other hand, is widely regarded as a weak learner, apparently memorizing and exhibiting
-            catastrophic forgetting. Several works attribute this discrepancy to the observation that RL learns <b>on-policy</b> while SFT learns <b>off-policy</b>. 
-            RL learns from rollouts generated from the learner's own distribution while SFT targets matching traces that can be exceedingly different from a
+            abilities relatively intact. SFT, on the other hand, is widely regarded as a weak learner, memorizing instead of generalizing and exhibiting
+            catastrophic forgetting. Overwhelming evidence attributes this discrepancy to the observation that RL learns <b>on-policy</b> while SFT learns <b>off-policy</b>. 
+            RL learns from rollouts generated from the learner's own distribution while SFT fits to traces that can be exceedingly different from a
             typical rollout, resulting in drastic and unpredictable shifts in behavior.
           </p>
           
           <p>
             Off-policy learning has one resounding advantage, however, which is the ability to leverage <b>privileged information</b> in constructing 
             target rollouts for learning. On-policy learning relies on the learner's own ability to generate signal, forcing a reliance on random chance 
-            for finding target trajectories. For truly novel tasks, this chance is effectively zero, yielding no learning signal. This leaves learning
+            for finding target trajectories. For truly novel tasks, this chance is effectively zero, yielding no learning signal. This further leaves learning
             prone to <b>distribution sharpening</b>, where preexisting capabilities are refined instead of new capabilities being added.
           </p>
 
           <p>
-            This motivates the following question: <b>How do we generate on-policy trajectories that remain faithful to privileged off-policy information?</b>
+            This motivates our driving question: <b>Can we generate on-policy trajectories that remain faithful to privileged off-policy information?</b>
           </p>
 
         </div>
