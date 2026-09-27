@@ -217,7 +217,7 @@
           </p>
           <p>
             Metropolis-Hastings is an approximate sampler that iteratively updates a sample rollout \(mathbf{x}\) by proposing an altered candidate 
-            \(mathbf{x'}\) with proposal distribution \(\kappa\), accepting updates with probability \(A(\mathbf{x}, \mathbf{x'})\) that depends on 
+            \(\mathbf{x'}\) with proposal distribution \(\kappa\), accepting updates with probability \(A(\mathbf{x}, \mathbf{x'})\) that depends on 
             \(p_{\mathcal{C}}\) via
 
             \[A(\mathbf{x}, \mathbf{x'}) = \text{min} \left\lbrace 1, \frac{p_{\mathcal{C}}(\mathbf{x}) \cdot \kappa(\mathbf{x'} | \mathbf{x})}{p_{\mathcal{C}}(\mathbf{x'}) \cdot \kappa(\mathbf{x}|\mathbf{x'})}\right\rbrace =  \text{min} \left\lbrace 1, \frac{p(\mathbf{x}) \cdot 
