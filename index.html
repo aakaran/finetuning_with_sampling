@@ -215,19 +215,6 @@
             on the Metropolis-Hastings (MCMC) algorithm that enables us to use privileged information as an "initialization" that progressively becomes more 
             on-policy with more MCMC steps. 
           </p>
-          <p>
-            Metropolis-Hastings is an approximate sampler that iteratively updates a sample rollout \(\mathbf{x}\) by proposing an altered candidate 
-            \(\mathbf{x'}\) with proposal distribution \(\kappa\), accepting updates with probability \(A(\mathbf{x}, \mathbf{x'})\) that depends on 
-            \(p_{\mathcal{C}}\) via
-
-            \[A(\mathbf{x}, \mathbf{x'}) = \text{min} \left\lbrace 1, \frac{p_{\mathcal{C}}(\mathbf{x}) \cdot \kappa(\mathbf{x'} | \mathbf{x})}{p_{\mathcal{C}}(\mathbf{x'}) \cdot \kappa(\mathbf{x}|\mathbf{x'})}\right\rbrace =  \text{min} \left\lbrace 1, \frac{p(\mathbf{x}) \cdot 
-    \mathbf{1}\bigl(\mathbf{x} \in \mathcal{C}\bigr) \cdot \kappa(\mathbf{x'} | \mathbf{x})}{p(\mathbf{x'}) \cdot 
-    \mathbf{1}\bigl(\mathbf{x'} \in \mathcal{C}\bigr) \cdot \kappa(\mathbf{x}|\mathbf{x'})}\right\rbrace = \text{min} \left\lbrace 1, \frac{p(\mathbf{x}) \cdot \kappa_{\mathcal{C}}(\mathbf{x'} | \mathbf{x})}{p(\mathbf{x'}) \cdot \kappa_{\mathcal{C}}(\mathbf{x}|\mathbf{x'})}\right\rbrace.\]
-
-            Note that we can <b>absorb the information constraint into the proposal</b> instead of the target distribution, allowing us to use it <b>in-context to
-            generate MCMC candidates</b> instead of using it as a trajectory-level verifier for rejection sampling. 
-          </p>
-
 
           <!-- Embed block START -->
           <figure style="margin: 24px 0; text-align: center;">
@@ -249,13 +236,30 @@
               </iframe>
             </div>
             <figcaption style="color:#6b7280; font-size: 0.9rem; margin-top: 8px;">
-              Illustration of Metropolis-Hastings updates.
+              Illustration of the traditional Metropolis-Hastings algorithm.
             </figcaption>
             <noscript>
               Your browser has JavaScript disabled. You can <a href="mh_animation.html">open the interactive version</a>.
             </noscript>
           </figure>
           <!-- Embed block END -->
+
+          
+          <p>
+            Metropolis-Hastings is an approximate sampler that iteratively updates a sample rollout \(\mathbf{x}\) by proposing an altered candidate 
+            \(\mathbf{x'}\) with proposal distribution \(\kappa\), accepting updates with probability \(A(\mathbf{x}, \mathbf{x'})\) that depends on 
+            \(p_{\mathcal{C}}\) via
+
+            \[A(\mathbf{x}, \mathbf{x'}) = \text{min} \left\lbrace 1, \frac{p_{\mathcal{C}}(\mathbf{x}) \cdot \kappa(\mathbf{x'} | \mathbf{x})}{p_{\mathcal{C}}(\mathbf{x'}) \cdot \kappa(\mathbf{x}|\mathbf{x'})}\right\rbrace =  \text{min} \left\lbrace 1, \frac{p(\mathbf{x}) \cdot 
+    \mathbf{1}\bigl(\mathbf{x} \in \mathcal{C}\bigr) \cdot \kappa(\mathbf{x'} | \mathbf{x})}{p(\mathbf{x'}) \cdot 
+    \mathbf{1}\bigl(\mathbf{x'} \in \mathcal{C}\bigr) \cdot \kappa(\mathbf{x}|\mathbf{x'})}\right\rbrace = \text{min} \left\lbrace 1, \frac{p(\mathbf{x}) \cdot \kappa_{\mathcal{C}}(\mathbf{x'} | \mathbf{x})}{p(\mathbf{x'}) \cdot \kappa_{\mathcal{C}}(\mathbf{x}|\mathbf{x'})}\right\rbrace.\]
+
+            Note that we can <b>absorb the information constraint into the proposal</b> instead of the target distribution, allowing us to use it <b>in-context to
+            generate MCMC candidates</b> instead of using it as a trajectory-level verifier for rejection sampling. 
+          </p>
+
+
+         
 
           <p>
             Our algorithm, called <b>projection sampling</b>, only requires a reference model and off-policy data to generate a bespoke, model-native
