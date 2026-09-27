@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Finetuning with Sampling: Make SFT Generalize, Not Forget - teaching models to learn fundamentally new skills with MCMC sampling.">
+        content="Finetuning with Sampling: SFT Learns Better Than You Think - teaching models to learn fundamentally new skills with MCMC sampling.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Finetuning with Sampling: Make SFT Generalize, Not Forget</title>
 
@@ -48,7 +48,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Finetuning with Sampling: Make SFT Generalize, Not Forget</h1>
+          <h1 class="title is-1 publication-title">Finetuning with Sampling: SFT Learns Better Than You Think</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://aakaran.github.io/">Aayush Karan</a><sup>1</sup>,</span>
@@ -213,7 +213,7 @@
             which is the distribution closest to base model policy \(p\) that is also faithful to \( \mathcal{C} \). Of course, one way to sample
             from \(p_{\mathcal{C}}\) is via <i>rejection sampling</i>, but this is no different from repeated sampling. Instead, we employ a neat trick based
             on the Metropolis-Hastings (MCMC) algorithm that enables us to use privileged information as an "initialization" that progressively becomes more 
-            on-policy with more MCMC steps. 
+            on-policy with more MCMC steps. We call this sampling algorithm <b>projection sampling</b>. 
           </p>
           <p>
             Metropolis-Hastings is an approximate sampler that iteratively updates a sample rollout \(\mathbf{x}\) by proposing an altered candidate 
@@ -227,6 +227,10 @@
             Note that we can <b>absorb the information constraint into the proposal</b> instead of the target distribution, allowing us to use it <b>in-context to
             generate MCMC candidates</b> instead of using it as a trajectory-level verifier for rejection sampling. 
           </p>
+          <div style="text-align:center; margin: 24px 0;">
+            <img src="science_math_logprobs_histograms_green.png" alt="Projection Sampling Likelihoods" width="90%">
+          </div>
+
           <!-- Embed block START -->
           <figure style="margin: 24px 0; text-align: center;">
             <div style="
@@ -336,7 +340,7 @@
         <h3 class="title is-4">Learning Beyond Sharpening</h3>
         <div class="content has-text-justified">
           <p>
-            RL-posttraining methods like GRPO are known to exhibit <strong>diversity collpase</strong> as measured by a <strong>deteriorated pass@\(k\)</strong> 
+            Although our boosted trajectories as measured by a <strong>deteriorated pass@\(k\)</strong> 
             performance (where a problem is solved if at least one of k samples is correct). While single-shot reasoning demonstrates considerable boosts, <em>multi-shot</em> reasoning
             deteriorates: in fact, the base model pass@\(k\) performance typically exceeds that of GRPO for large enough \(k\).
           </p>
