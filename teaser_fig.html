@@ -112,7 +112,7 @@
     txt(g,name,x+dx,y+dy,{class:'point-label','text-anchor':anchor,'font-weight':name==='Ours'?'bold':'normal'});
     pointElements.push(g);
   });
-  [['SFT',C.sft],['On-Policy (OPSD)',C.opsd],['Ours (Sampling SFT)',C.ours]].forEach(([name,color],i)=>{
+  [['SFT',C.sft],['OPSD (On-Policy)',C.opsd],['Ours (Sampling SFT)',C.ours]].forEach(([name,color],i)=>{
     const x=[235,425,672][i];make('rect',{x,y:551,width:22,height:13,fill:color},legend);
     txt(legend,name,x+30,563,{ 'font-size':18,'font-weight':i===2?'bold':'normal'});
   });
