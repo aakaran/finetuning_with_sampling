@@ -216,13 +216,16 @@
             on-policy with more MCMC steps. 
           </p>
           <p>
-            Metropolis-Hastings is an approximate sampler that iteratively updates a sample rollout (\mathbf{x}\) by proposing an altered candidate 
-            (\mathbf{x'}\) via a proposal distribution \(\kappa\), accepting updates with probability \(A(\mathbf{x}, \mathbf{x'})\) that depends on 
+            Metropolis-Hastings is an approximate sampler that iteratively updates a sample rollout \(mathbf{x}\) by proposing an altered candidate 
+            \(mathbf{x'}\) with proposal distribution \(\kappa\), accepting updates with probability \(A(\mathbf{x}, \mathbf{x'})\) that depends on 
             \(p_{\mathcal{C}}\) via
 
             \[A(\mathbf{x}, \mathbf{x'}) = \text{min} \left\lbrace 1, \frac{p_{\mathcal{C}}(\mathbf{x}) \cdot \kappa(\mathbf{x'} | \mathbf{x})}{p_{\mathcal{C}}(\mathbf{x'}) \cdot \kappa(\mathbf{x}|\mathbf{x'})}\right\rbrace =  \text{min} \left\lbrace 1, \frac{p(\mathbf{x}) \cdot 
     \mathbf{1}\bigl(\mathbf{x} \in \mathcal{C}\bigr) \cdot \kappa(\mathbf{x'} | \mathbf{x})}{p(\mathbf{x'}) \cdot 
     \mathbf{1}\bigl(\mathbf{x'} \in \mathcal{C}\bigr) \cdot \kappa(\mathbf{x}|\mathbf{x'})}\right\rbrace = \text{min} \left\lbrace 1, \frac{p(\mathbf{x}) \cdot \kappa_{\mathcal{C}}(\mathbf{x'} | \mathbf{x})}{p(\mathbf{x'}) \cdot \kappa_{\mathcal{C}}(\mathbf{x}|\mathbf{x'})}\right\rbrace.\]
+
+            Note that we can <i>absorb the information constraint into the proposal</i> instead of the target distribution, allowing us to use it <i>in-context to
+            generate MCMC candidates</i> instead of using it as a <i>trajectory-level verifier</i>. 
           </p>
           <!-- Embed block START -->
           <figure style="margin: 24px 0; text-align: center;">
