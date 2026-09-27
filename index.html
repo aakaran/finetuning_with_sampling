@@ -295,17 +295,12 @@
             over a variety of tasks that are characteristic of the range of capabilities posttraining seeks to introduce: novel skill acquisition with
             <b>chemistry</b>, <b>math</b> reasoning, and open-ended expertise with <b>medical</b> question-answering. 
             
-            We compare against a GRPO baseline (using the MATH training dataset), the poster child for RL-posttraining, as well as the original base model itself. 
-            We also include the AlpacaEval 2.0 benchmark, a non-verifiable, general helpfulness benchmark, to demonstrate our applicability beyond the verifiable regime.
           </p>
-           <p>
-            In-domain (MATH500), power sampling surprisingly is close to the performance of GRPO without ever changing the base model's weights.
-            Out-of-domain, power sampling can actually <strong>outperform</strong> GRPO, as demonstrated on HumanEval and AlpacaEval 2.0. 
-          </p>
+
           <div style="text-align:center; margin: 24px 0;">
-            <img src="chemistry_teaser.png" alt="Single-Shot Reasoning" width="100%">
+            <img src="chem_teaser.png" alt="Single-Shot Reasoning" width="100%">
             <figcaption style="color:#6b7280; font-size: 0.9rem; margin-top: 8px;">
-              Single-shot reasoning performance of power sampling and GRPO relative to the base model for Qwen2.5-Math-7B.
+              Generalization and forgetting performance for SFT, OPSD, and SFT with sampling on Qwen2.5-Math-7B-Instruct.
             </figcaption>
 
           </div>
