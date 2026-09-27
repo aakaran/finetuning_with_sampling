@@ -199,7 +199,7 @@
           <p>
             Privileged information can be formalized as an information constraint \( \mathcal{C} \) over all trajectories, where some predetermined equivalence relation
             determines whether a trajectory is <i>faithful</i> to \( \mathcal{C} \) or not. Consider the set of all distributions \( \mathcal{P}_\mathcal{C} \) 
-            that have support \( \mathcal{C} \). Then we want to sample from the <b>information projection</b>
+            that have support \( \mathcal{C} \). Then we want to sample from the <b>information projection</b>:
 
             \[p_{\mathcal{C}}
                 :=
@@ -216,7 +216,7 @@
             on-policy with more MCMC steps. 
           </p>
           <p>
-            Metropolis-Hastings is an approximate sampler that iteratively updates a sample rollout \(mathbf{x}\) by proposing an altered candidate 
+            Metropolis-Hastings is an approximate sampler that iteratively updates a sample rollout \(\mathbf{x}\) by proposing an altered candidate 
             \(\mathbf{x'}\) with proposal distribution \(\kappa\), accepting updates with probability \(A(\mathbf{x}, \mathbf{x'})\) that depends on 
             \(p_{\mathcal{C}}\) via
 
@@ -224,8 +224,8 @@
     \mathbf{1}\bigl(\mathbf{x} \in \mathcal{C}\bigr) \cdot \kappa(\mathbf{x'} | \mathbf{x})}{p(\mathbf{x'}) \cdot 
     \mathbf{1}\bigl(\mathbf{x'} \in \mathcal{C}\bigr) \cdot \kappa(\mathbf{x}|\mathbf{x'})}\right\rbrace = \text{min} \left\lbrace 1, \frac{p(\mathbf{x}) \cdot \kappa_{\mathcal{C}}(\mathbf{x'} | \mathbf{x})}{p(\mathbf{x'}) \cdot \kappa_{\mathcal{C}}(\mathbf{x}|\mathbf{x'})}\right\rbrace.\]
 
-            Note that we can <i>absorb the information constraint into the proposal</i> instead of the target distribution, allowing us to use it <i>in-context to
-            generate MCMC candidates</i> instead of using it as a <i>trajectory-level verifier</i>. 
+            Note that we can <b>absorb the information constraint into the proposal</b> instead of the target distribution, allowing us to use it <b>in-context to
+            generate MCMC candidates</b> instead of using it as a trajectory-level verifier for rejection sampling. 
           </p>
           <!-- Embed block START -->
           <figure style="margin: 24px 0; text-align: center;">
