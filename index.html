@@ -166,7 +166,7 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
 
-        <h3 class="title is-4">Learning On-Policy</h3>
+        <h3 class="title is-4">On-Policy Learning</h3>
         <div class="content has-text-justified">
           <p>
             How do we introduce <b>fundamentally new capabilities</b> to a base model without <b>forgetting existing ones</b>?
@@ -197,8 +197,8 @@
         <h3 class="title is-4">Projection Sampling</h3>
         <div class="content has-text-justified">
           <p>
-            Privileged information can be formalized as an information constraint \( \mathcal{C} \) over all trajectories, where some predetermined equivalence relation
-            determines whether a trajectory is <i>faithful</i> to \( \mathcal{C} \) or not. Consider the set of all distributions \( \mathcal{P}_\mathcal{C} \) 
+            With the right formalism, we can actually explicitly write down an ideal sampling distribution for learning with privileged information. Privileged information can be represented as an information constraint \( \mathcal{C} \) over all trajectories, where some predetermined equivalence relation
+            determines whether a trajectory is <i>consistent</i> with \( \mathcal{C} \) or not. Consider the set of all distributions \( \mathcal{P}_\mathcal{C} \) 
             that have support \( \mathcal{C} \). Then we want to sample from the <b>information projection</b>:
 
             \[p_{\mathcal{C}}
@@ -210,7 +210,7 @@
                     p
                 \right) \implies p_{\mathcal{C}}(\mathbf{x}) \propto p(\mathbf{x}) \cdot \mathbf{1}\bigl(\mathbf{x} \in \mathcal{C}\bigr),\]
 
-            which is the distribution closest to base model policy \(p\) that is also faithful to \( \mathcal{C} \). Of course, one way to sample
+            which is the distribution closest to base model policy \(p\) that is also consistent with \( \mathcal{C} \). Of course, one way to sample
             from \(p_{\mathcal{C}}\) is via <i>rejection sampling</i>, but this is no different from repeated sampling. Instead, we employ a neat trick based
             on the Metropolis-Hastings (MCMC) algorithm that enables us to use privileged information as an "initialization" that progressively becomes more 
             on-policy with more MCMC steps. 
