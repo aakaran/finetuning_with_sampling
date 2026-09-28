@@ -151,7 +151,7 @@
           </p>
           <p>
             In addition, the resulting finetuned models exhibit strong distributional performance and are capable of learning beyond sharpening 
-            the base model distribution. At a higher level, our approach presents sampling as a model-native framework that aligns data with 
+            the base model distribution. At a higher level, our approach presents sampling as a model-native operator that aligns data with 
             learnability, offering broader utility as a general-purpose primitive throughout the posttraining stack.
           </p>
         </div>
@@ -260,9 +260,33 @@
             ensure our candidates are consistent with \(\mathcal{C}\). 
             
           </p>
-
-
-         
+          <!-- Embed block START -->
+          <figure style="margin: 24px 0; text-align: center;">
+            <div style="
+                max-width: 900px;
+                margin: 0 auto;
+                border: 1px solid #e5e7eb;
+                border-radius: 10px;
+                overflow: hidden;
+                aspect-ratio: 48 / 9;">
+              <!-- Use iframe for an external HTML file -->
+              <iframe
+                src="block_mcmc.html"
+                title="MCMC Illustration"
+                style="width: 100%; height: 100%; border: 0;"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <figcaption style="color:#6b7280; font-size: 0.9rem; margin-top: 8px;">
+              Blockwise projection sampling for LLMs.
+            </figcaption>
+            <noscript>
+              Your browser has JavaScript disabled. You can <a href="mh_animation.html">open the interactive version</a>.
+            </noscript>
+          </figure>
+          <!-- Embed block END -->
 
           <p>
             We call our algorithm <b>projection sampling</b>, given that it projects off-policy traces towards on-policy regions of any given reference model. 
@@ -298,8 +322,8 @@
           </p>
 
           <p>
-            Across these tasks, we find that standard SFT applied to our projection sampled trajectories can perform well on new tasks and even generalize
-            beyond the specific test domain, all while largely retaining prior capabilities at least as well as on-policy baselines.    
+            Across these tasks, we find that standard SFT composed with projection sampling can achieve substantial improvements on new tasks and even generalize
+            beyond the specific test domain, all while retaining prior capabilities at least as well as on-policy baselines.    
           </p>
 
           <div style="text-align:center; margin: 24px 0;">
