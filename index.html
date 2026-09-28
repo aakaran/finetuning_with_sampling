@@ -257,7 +257,8 @@
             In the expression for \(A(\mathbf{x}, \mathbf{x'})\), note that we can <b>absorb the information constraint into the proposal</b> instead of the target distribution, allowing us to use it <b>in-context to
             generate MCMC candidates</b>. In other words, MCMC sampling from \(p_{\mathcal{C}}\) is equivalent to MCMC sampling from \(p\) with <i>restricted proposals</i> that preserve \(\mathcal{C}\) across candidate
             trajectories. For our implementation, we select the <i>privileged self-teacher</i> \(p( \cdot | \mathcal{C})\) as our proposer, leveraging the strong instruction-following capabilities of pretrained LLMs to
-            ensure our candidates are consistent with \(\mathcal{C}\). 
+            ensure our candidates are consistent with \(\mathcal{C}\). The MCMC process then progressively refines these candidates to be more in-distribution, scoring them based on their base model likelihoods.
+            We illustrate a toy example of the generation process below: 
             
           </p>
           <!-- Embed block START -->
@@ -280,7 +281,7 @@
               </iframe>
             </div>
             <figcaption style="color:#6b7280; font-size: 0.9rem; margin-top: 8px;">
-              Blockwise projection sampling for LLMs.
+              Block-wise projection sampling for LLMs.
             </figcaption>
             <noscript>
               Your browser has JavaScript disabled. You can <a href="mh_animation.html">open the interactive version</a>.
@@ -289,7 +290,7 @@
           <!-- Embed block END -->
 
           <p>
-            We call our algorithm <b>projection sampling</b>, given that it projects off-policy traces towards on-policy regions of any given reference model. 
+            We call our algorithm <b>projection sampling</b>, as it projects off-policy traces into more on-policy regions of the base model. 
             In fact, if we plot the likelihoods of the original traces alongside the corresponding sampled trajectories, we can directly observe its likelihood-boosting effect.
           </p>
       
