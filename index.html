@@ -95,7 +95,7 @@
               </span>
             </div>
 <div class="is-size-5 mt-3">
-                <span class="has-text-weight-bold">TLDR:</span> 
+                <span class="has-text-weight-bold">TLDR: </span> 
               </div>
           </div>
         </div>
@@ -211,7 +211,7 @@
                 \right) \implies p_{\mathcal{C}}(\mathbf{x}) \propto p(\mathbf{x}) \cdot \mathbf{1}\bigl(\mathbf{x} \in \mathcal{C}\bigr),\]
 
             which is the distribution closest to base model policy \(p\) that is also consistent with \( \mathcal{C} \). Of course, one way to sample
-            from \(p_{\mathcal{C}}\) is via <i>rejection sampling</i>, but this is identical to repeated sampling as with on-policy learning. Instead, we employ a neat trick based
+            from \(p_{\mathcal{C}}\) is via <i>rejection sampling</i>, but this is identical to the repeated sampling in on-policy learning. Instead, we employ a neat trick based
             on the Metropolis-Hastings (MCMC) algorithm that enables us to use privileged information as an "initialization" that progressively becomes more 
             on-policy with more MCMC steps. 
           </p>
