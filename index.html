@@ -95,7 +95,7 @@
               </span>
             </div>
 <div class="is-size-5 mt-3">
-                <span class="has-text-weight-bold">TLDR:</span> We introduce a model-native sampling algorithm that __ off-policy data, 
+                <span class="has-text-weight-bold">TLDR:</span> 
               </div>
           </div>
         </div>
@@ -380,9 +380,13 @@
 
         <div class="content has-text-justified">
           <p>
-            The success of every single posttraining algorithm hinges on the following ability: <b>can we find a trajectory native to the learner's distribution
-            that accomplishes some specification?</b> Sampling is a way to <b>intentionally construct such trajectories</b> from privileged information,
-            establishing a <b>general-purpose primitive</b> for the posttraining stack, from SFT to RL to distillation. 
+            Our work demonstrates that SFT is <b>far more capable at generalizing and mitigating forgetting</b> than traditionally appreciated. Rather than modifying
+            the learning algorithm to accommodate off-policy data, we instead propose shaping off-policy data to accommodate the learner. The resulting composition of finetuning
+            with sampling exhibits the characteristic generalization and prior capability retention of on-policy learning while facilitating learning beyond distribution sharpening.
+            
+            Beyond just SFT, the success of posttraining hinges on the following ability: <b>can we find trajectories native to the learner's distribution
+            that provide desirable information signal?</b> Sampling provides a principled methodology to <b>intentionally construct such trajectories</b> from privileged information,
+            serving as a <b>general-purpose primitive</b> for the entire posttraining stack, from finetuning to reinforcement learning to distillation.  
           </p>
         </div>
       </div>
